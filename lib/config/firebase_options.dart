@@ -25,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -47,29 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBFjQ8xLPkOR7EqN-sbu8c2UJslyYpaXD0',
-    appId: '1:514459263466:web:f16b0ca33cf3bd8ff85293',
-    messagingSenderId: '514459263466',
-    projectId: 'gabimaps-ad5d6',
-    authDomain: 'gabimaps-ad5d6.firebaseapp.com',
-    storageBucket: 'gabimaps-ad5d6.firebasestorage.app',
-    measurementId: 'G-Z35BGWSKXQ',
+    apiKey: 'AIzaSyAesVAHc8DgI3y1lCV8b_PfLma74YvK2wo',
+    appId: '1:955193548117:web:36efa503d9835ab85123dc',
+    messagingSenderId: '955193548117',
+    projectId: 'gabimaps-0001',
+    authDomain: 'gabimaps-0001.firebaseapp.com',
+    storageBucket: 'gabimaps-0001.firebasestorage.app',
+    measurementId: 'G-Q2NQ40FCSQ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCTyVJtRKoVp2RUIBKDSACwqev27hKzL9Y',
-    appId: '1:514459263466:android:fa495253312abdc0f85293',
-    messagingSenderId: '514459263466',
-    projectId: 'gabimaps-ad5d6',
-    storageBucket: 'gabimaps-ad5d6.firebasestorage.app',
+    apiKey: 'AIzaSyDoJhzE84r0BISPTyPQsvVYscFbR4D0hdI',
+    appId: '1:955193548117:android:a40ec58d0e37e54a5123dc',
+    messagingSenderId: '955193548117',
+    projectId: 'gabimaps-0001',
+    storageBucket: 'gabimaps-0001.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAEqbUaUfjb6m5PhHqgq_ICAWkY-MNN4bM',
-    appId: '1:514459263466:ios:b317a28a2dc88d9cf85293',
-    messagingSenderId: '514459263466',
-    projectId: 'gabimaps-ad5d6',
-    storageBucket: 'gabimaps-ad5d6.firebasestorage.app',
+    apiKey: 'AIzaSyAwE3yI-HtzVapdIcSKwSZlRwKtGSwfAyE',
+    appId: '1:955193548117:ios:d3b715e389f8a1da5123dc',
+    messagingSenderId: '955193548117',
+    projectId: 'gabimaps-0001',
+    storageBucket: 'gabimaps-0001.firebasestorage.app',
     iosBundleId: 'com.example.gabimaps',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAwE3yI-HtzVapdIcSKwSZlRwKtGSwfAyE',
+    appId: '1:955193548117:ios:d3b715e389f8a1da5123dc',
+    messagingSenderId: '955193548117',
+    projectId: 'gabimaps-0001',
+    storageBucket: 'gabimaps-0001.firebasestorage.app',
+    iosBundleId: 'com.example.gabimaps',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAesVAHc8DgI3y1lCV8b_PfLma74YvK2wo',
+    appId: '1:955193548117:web:c7dd825c7fe8b0ab5123dc',
+    messagingSenderId: '955193548117',
+    projectId: 'gabimaps-0001',
+    authDomain: 'gabimaps-0001.firebaseapp.com',
+    storageBucket: 'gabimaps-0001.firebasestorage.app',
+    measurementId: 'G-2NF7EVQ02C',
   );
 }

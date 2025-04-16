@@ -106,8 +106,8 @@ class _AgregarUbicacionScreenState
                     _mapController = controller;
                   },
                   initialCameraPosition: const CameraPosition(
-                    target: LatLng(0, 0), // Centro inicial del mapa
-                    zoom: 2.0,
+                    target: LatLng(-17.7700, -63.1800), // centro del campus
+                    zoom: 17.0,
                   ),
                   onTap: _onMapTapped,
                   markers:
@@ -119,6 +119,12 @@ class _AgregarUbicacionScreenState
                               position: _selectedLocation!,
                             ),
                           },
+                  cameraTargetBounds: CameraTargetBounds(
+                    LatLngBounds(
+                      southwest: LatLng(-17.7725, -63.1830),
+                      northeast: LatLng(-17.7680, -63.1770),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
