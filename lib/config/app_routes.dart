@@ -1,5 +1,7 @@
 // lib/presentation/screenstree/routes.dart
 import 'package:flutter/material.dart';
+import 'package:gabimaps/presentation/screens/home/location_list_screen.dart';
+import 'package:gabimaps/presentation/screens/map/map_with_pois_screen.dart';
 import '../presentation/screens/auth/login_screen.dart'; // Ruta de importación correcta
 import '../presentation/screens/auth/register_screen.dart'; // Ruta de importación correcta
 import '../presentation/screens/home/home_screen.dart'; // Ruta de importación correcta
@@ -9,6 +11,7 @@ import '../presentation/screens/settings/profile_screen.dart'; // Ruta de import
 import '../presentation/screens/splash_screen.dart'; // Ruta de importación correcta
 
 class AppRoutes {
+  static const String locationList = '/locationList'; // NUEVO
   static const String splash = '/splash';
   static const String login = '/login';
   static const String register = '/register';
@@ -16,8 +19,9 @@ class AppRoutes {
   static const String addLocation = '/addLocation';
   static const String locationDetails = '/locationDetails';
   static const String profile = '/profile';
-
+  static const String mapWithPois = '/mapWithPois';
   static Map<String, WidgetBuilder> routes = {
+    mapWithPois: (context) => const MapWithPoisScreen(),
     splash: (context) => SplashScreen(),
     login: (context) => LoginScreen(),
     register: (context) => RegisterScreen(),
@@ -25,5 +29,6 @@ class AppRoutes {
     addLocation: (context) => AgregarUbicacionScreen(),
     locationDetails: (context) => LocationDetailsScreen(),
     profile: (context) => ProfileScreen(),
+    locationList: (context) => LocationListScreen(),
   };
 }

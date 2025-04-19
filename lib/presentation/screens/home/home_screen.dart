@@ -1,6 +1,7 @@
 // home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gabimaps/config/app_routes.dart';
 import '../../providers/auth_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -52,6 +53,18 @@ class HomeScreen extends ConsumerWidget {
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, '/profile'),
               child: const Text('Perfil'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed:
+                  () => Navigator.pushNamed(context, AppRoutes.locationList),
+              child: const Text('Ver Ubicaciones Guardadas'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.mapWithPois);
+              },
+              child: const Text('Ver Mapa con POIs'),
             ),
           ],
         ),
