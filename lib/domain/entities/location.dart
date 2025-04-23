@@ -10,6 +10,7 @@ class LocationEntity {
   final double longitude;
   // Dirección opcional de la ubicación.
   final String? address;
+  final int layer; // o 'capa'
 
   // Constructor de la clase `LocationEntity`.
   // Los campos `id`, `name`, `latitude` y `longitude` son obligatorios.
@@ -20,5 +21,6 @@ class LocationEntity {
     required this.latitude,
     required this.longitude,
     this.address,
+    required this.layer,
   });
 }

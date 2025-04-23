@@ -20,8 +20,11 @@ class _AgregarUbicacionScreenState
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
+
   LatLng? _selectedLocation;
   GoogleMapController? _mapController;
+
+  int _selectedLayer = 1; // valor por defecto para la capa
 
   void _onMapTapped(LatLng latLng) {
     setState(() {
@@ -60,7 +63,6 @@ class _AgregarUbicacionScreenState
       });
     } catch (e) {
       if (mounted) {
-        // Verifica si el widget está montado
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('No se pudo obtener la ubicación actual.'),
@@ -106,7 +108,7 @@ class _AgregarUbicacionScreenState
                     _mapController = controller;
                   },
                   initialCameraPosition: const CameraPosition(
-                    target: LatLng(-17.7700, -63.1800), // centro del campus
+                    target: LatLng(-17.7700, -63.1800),
                     zoom: 17.0,
                   ),
                   onTap: _onMapTapped,
@@ -119,12 +121,6 @@ class _AgregarUbicacionScreenState
                               position: _selectedLocation!,
                             ),
                           },
-                  cameraTargetBounds: CameraTargetBounds(
-                    LatLngBounds(
-                      southwest: LatLng(-17.7725, -63.1830),
-                      northeast: LatLng(-17.7680, -63.1770),
-                    ),
-                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -153,6 +149,20 @@ class _AgregarUbicacionScreenState
                     (value) =>
                         value!.isEmpty ? 'Este campo es obligatorio' : null,
               ),
+              DropdownButtonFormField<int>(
+                value: _selectedLayer,
+                decoration: const InputDecoration(labelText: 'Capa'),
+                items: const [
+                  DropdownMenuItem(value: 1, child: Text('Capa 1')),
+                  DropdownMenuItem(value: 2, child: Text('Capa 2')),
+                  DropdownMenuItem(value: 3, child: Text('Capa 3')),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    _selectedLayer = value!;
+                  });
+                },
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
@@ -162,6 +172,7 @@ class _AgregarUbicacionScreenState
                       name: _nameController.text,
                       latitude: double.parse(_latitudeController.text),
                       longitude: double.parse(_longitudeController.text),
+                      layer: _selectedLayer,
                     );
 
                     await ref.read(saveLocationProvider).call(location);

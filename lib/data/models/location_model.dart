@@ -7,6 +7,7 @@ class LocationModel extends LocationEntity {
     required super.latitude,
     required super.longitude,
     super.address,
+    required super.layer,
   });
 
   factory LocationModel.fromMap(Map<String, dynamic> map) {
@@ -16,6 +17,7 @@ class LocationModel extends LocationEntity {
       latitude: map['latitude'],
       longitude: map['longitude'],
       address: map['address'],
+      layer: map['layer'], //capa
     );
   }
 
@@ -26,6 +28,7 @@ class LocationModel extends LocationEntity {
       'latitude': latitude,
       'longitude': longitude,
       'address': address,
+      'layer': layer,
     };
   }
 }

@@ -16,6 +16,7 @@ class MapWithPoisScreen extends ConsumerStatefulWidget {
 class _MapWithPoisScreenState extends ConsumerState<MapWithPoisScreen> {
   GoogleMapController? _mapController;
   LatLng? _currentLocation;
+  double _currentZoom = 17.0;
 
   final List<LatLng> _campusCoords = [
     LatLng(-17.772803, -63.198984),
@@ -60,7 +61,7 @@ class _MapWithPoisScreenState extends ConsumerState<MapWithPoisScreen> {
       });
       _mapController?.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: current, zoom: 17),
+          CameraPosition(target: current, zoom: 15),
         ),
       );
     } catch (e) {
@@ -68,8 +69,19 @@ class _MapWithPoisScreenState extends ConsumerState<MapWithPoisScreen> {
     }
   }
 
-  Set<Marker> _crearMarcadores(List<LocationEntity> ubicaciones) {
-    return ubicaciones.map((loc) {
+  Set<Marker> _crearMarcadoresPorCapa(List<LocationEntity> ubicaciones) {
+    int capaActual;
+    if (_currentZoom < 17) {
+      capaActual = 1;
+    } else if (_currentZoom < 19) {
+      capaActual = 2;
+    } else {
+      capaActual = 3;
+    }
+
+    final filtradas = ubicaciones.where((loc) => loc.layer == capaActual);
+
+    return filtradas.map((loc) {
       return Marker(
         markerId: MarkerId(loc.id),
         position: LatLng(loc.latitude, loc.longitude),
@@ -99,13 +111,18 @@ class _MapWithPoisScreenState extends ConsumerState<MapWithPoisScreen> {
             (ubicaciones) => GoogleMap(
               initialCameraPosition: CameraPosition(
                 target: _currentLocation ?? const LatLng(-17.7825, -63.1815),
-                zoom: 17,
+                zoom: 15,
               ),
-              minMaxZoomPreference: const MinMaxZoomPreference(17, 22.0),
-              markers: _crearMarcadores(ubicaciones),
+              minMaxZoomPreference: const MinMaxZoomPreference(15, 22.0),
+              markers: _crearMarcadoresPorCapa(ubicaciones),
               polygons: _campusPolygon,
               onMapCreated: (controller) => _mapController = controller,
               myLocationEnabled: true,
+              onCameraMove: (position) {
+                setState(() {
+                  _currentZoom = position.zoom;
+                });
+              },
               onTap: (_) {},
             ),
       ),

@@ -32,6 +32,7 @@ class LocationRepositoryImpl implements LocationRepository {
             latitude: location.latitude,
             longitude: location.longitude,
             address: location.address,
+            layer: location.layer,
           ).toMap(),
         );
   }
